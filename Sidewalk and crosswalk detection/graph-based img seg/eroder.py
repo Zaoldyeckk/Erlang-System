@@ -3,12 +3,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 from PIL import Image
 
-IMG_NAME = "16.png"
+IMG_NAME = "seg2.png"
 img = cv2.imread(IMG_NAME)
 
 kernel = np.ones((2,2),np.uint8)
 erosion = cv2.erode(img,kernel,iterations = 1)
 plt.imsave("ero-" + IMG_NAME, erosion)
+# erosion = img.copy()
 
 # identifer_x = 300
 # identifer_y = 240
@@ -22,7 +23,8 @@ plt.imsave("ero-" + IMG_NAME, erosion)
 # plt.imsave("dwalk-" + IMG_NAME, dilation, cmap="gray")
 
 erosion = cv2.cvtColor(erosion, cv2.COLOR_BGR2GRAY)
-roi = erosion[300:360, 160:320]
+# roi = erosion[300:360, 160:320]
+roi = erosion[320:360, 160:320]
 im = Image.fromarray(roi)
 plt.imsave("roi-" + IMG_NAME, roi)
 w, h = im.size
